@@ -2,11 +2,22 @@ import { StarIcon } from "@heroicons/react/solid";
 import Image from "next/image"
 import { useState } from "react";
 import CurrencyFormat from 'react-currency-format';
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../slices/basketSlice";
 
 function Product({id , price , description , category , image , title}) {
     const Max_Number = 5
     const Min_Number = 1
 
+    const dispatch = useDispatch()
+
+    const addItemToBasket = () => {
+        const product = {
+            id , price , description , category , image , title , rating , isPrime
+        };
+        // sending the product to the redux (basket slice)
+        dispatch(addToBasket(product))
+    }
     function truncate(string,number)  {
         return string?.length > number ? string.substring(0,number-1)+ "..." : string
     }
@@ -25,9 +36,9 @@ function Product({id , price , description , category , image , title}) {
                 <h4 className="my-3">{title}</h4>
                 <div className="flex">
                     
-                    {Array(rating).fill().map((_,id)=>(
-                          <StarIcon key={id} className="h-5 text-yellow-500" />
-                 ))}
+                    {Array(rating).fill().map((_,i)=>(
+                          <StarIcon key={i} className="h-5 text-yellow-500" />
+                    ))}
                     
     
                 </div>
@@ -47,7 +58,8 @@ function Product({id , price , description , category , image , title}) {
                     </div>
                 )}    
     
-                <button className="mt-auto button">Add To Basket</button>
+                <button onClick={addItemToBasket}
+                className="mt-auto button">Add To Basket</button>
              
                 </>
       
