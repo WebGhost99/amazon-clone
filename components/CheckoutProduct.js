@@ -16,7 +16,7 @@ function CheckoutProduct({id,title,description,image,rating,price,category,isPri
     function truncate(string,number)  {
         return string?.length > number ? string.substring(0,number-1)+ "..." : string
     }
-    console.log(removeItemFromBasket)
+   
 
   return (
     <div className="grid grid-cols-5">
