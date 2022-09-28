@@ -46,6 +46,7 @@ function Product({id , price , description , category , image , title}) {
                 <div className="text-xs my-2 ">{truncate(description,150)}</div>
                 <div className="mb-5">
                     <CurrencyFormat 
+                        displayType={'text'}
                         value={price}
                         prefix="$"
                          />
