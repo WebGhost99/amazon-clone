@@ -47,8 +47,8 @@ export default async (req , res) => {
         }
     )),
         mode: 'payment',
-        success_url: `${process.env.HOST}/success`,
-        cancel_url: `${process.env.HOST}/checkout`,
+        success_url: `${process.env.NEXTAUTH_SECRET}/success`,
+        cancel_url: `${process.env.NEXTAUTH_SECRET}/checkout`,
         metadata : {
             email,
             images : JSON.stringify(items.map(item => item.image)),
